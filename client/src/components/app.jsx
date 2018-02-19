@@ -2,6 +2,9 @@ import React from 'react';
 import style from '../styles.css';
 import Header from './Header.jsx';
 import NotesList from './NotesList.jsx';
+import AddNoteModal from './AddNoteModal.jsx'
+import DeleteNoteModal from './DeleteNoteModal.jsx';
+import EditNoteModal from './EditNoteModal.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,70 +31,114 @@ class App extends React.Component {
     }
     this.addNote = this.addNote.bind(this);
     this.openAddNoteModal = this.openAddNoteModal.bind(this);
-    this.closeAddNoteModal = this.closeAddNoteModal.bind(this);
 
     this.deleteNote = this.deleteNote.bind(this);
     this.openDeleteNoteModal = this.openDeleteNoteModal.bind(this);
-    this.closeDeleteNoteModal = this.closeDeleteNoteModal.bind(this);
+    this.editNote = this.editNote.bind(this);
+    this.openEditNoteModal = this.openEditNoteModal.bind(this);
+    
+    this.closeNoteModal = this.closeNoteModal.bind(this);
   }
 
-  //i: noteindex
-  //show modal with message to confirm
-  //onclick confirm, remove note from list of notes
-  //onclick cancel, do nothing and close modal
-  deleteNote(noteIndex) {
+  openDeleteNoteModal(index) {
+    this.setState({ 
+      isDeleteNoteModalOpen: true,
+      noteIndexToModify: index
+     })
+  }
+
+  closeNoteModal() {
+    this.setState({ 
+      isAddNoteModalOpen: false,
+      isDeleteNoteModalOpen: false,
+      isEditNoteModalOpen: false,
+      noteIndexToModify: null
+    })
+  }
+
+  deleteNote(index) {
+    // console.log(noteIndex)
     const updatedNotes = this.state.notes;
-    updatedNotes.splice(noteIndex, 1);
+    updatedNotes.splice(index, 1);
 
     this.setState({
       notes: updatedNotes,
     });
   }
 
-  openDeleteNoteModal() {
-    this.setState({ isDeleteNoteModalOpen: true })
-  }
-
-  closeDeleteNoteModal() {
-    this.setState({ isDeleteNoteModalOpen: false })
-  }
-
   openAddNoteModal() {
     this.setState({ isAddNoteModalOpen: true })
   }
 
-  closeAddNoteModal() {
-    this.setState({ isAddNoteModalOpen: false })
-  }
-
-  addNote() {
+  addNote(color, title, body) {
     const newNote = {
-      color: 'rgb(250, 169, 176)',
-      title: '(add a title)',
-      body: '(add a note)',
+      color: color,
+      title: title,
+      body: body,
     };
-
+    // console.log(color, title, body)
     this.setState({
       notes: [...this.state.notes, newNote],
     });
   }
 
+  openEditNoteModal(index) {
+    this.setState({ 
+      isEditNoteModalOpen: true,
+      noteIndexToModify: index
+     });
+  }
+
+  editNote(noteIndex, color, title, body) {
+    const updatedNote = {
+      color: color,
+      title: title,
+      body: body,
+    };
+    debugger
+    let notes = this.state.notes.slice(0, noteIndex);
+    notes.push(updatedNote);
+    notes = notes.concat(this.state.notes.slice(noteIndex + 1));
+    // console.log(color, title, body)
+    this.setState({
+      notes: notes,
+    });
+  }
+
   render () {
+
     return (
       <div id="page" >
         <Header 
           addNote={this.addNote} 
           isAddNoteModalOpen={this.state.isAddNoteModalOpen} 
           openAddNoteModal={this.openAddNoteModal}
-          closeAddNoteModal={this.closeAddNoteModal}
+          closeNoteModal={this.closeNoteModal}
           />
         <NotesList 
           notes={this.state.notes} 
-          deleteNote={this.deleteNote} 
-          isDeleteNoteModalOpen={this.state.isDeleteNoteModalOpen} 
           openDeleteNoteModal={this.openDeleteNoteModal}
-          closeDeleteNoteModal={this.closeDeleteNoteModal}
+          openEditNoteModal={this.openEditNoteModal}
+          closeNoteModal={this.closeNoteModal}
           />
+        <AddNoteModal 
+          isAddNoteModalOpen={this.state.isAddNoteModalOpen}
+          addNote={this.addNote}
+          closeNoteModal={this.closeNoteModal}
+        />
+        { this.state.isEditNoteModalOpen ? (<EditNoteModal
+          index={this.state.noteIndexToModify}
+          note={this.state.notes[this.state.noteIndexToModify]}
+          isEditNoteModalOpen={this.state.isEditNoteModalOpen}
+          editNote={this.editNote}
+          closeNoteModal={this.closeNoteModal}
+        />) : null }
+        <DeleteNoteModal 
+          index={this.state.noteIndexToModify}
+          isDeleteNoteModalOpen={this.state.isDeleteNoteModalOpen}
+          deleteNote={this.deleteNote}
+          closeNoteModal={this.closeNoteModal}
+        />  
       </div>
     )
   }

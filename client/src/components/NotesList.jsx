@@ -11,10 +11,10 @@ class NotesList extends React.Component {
   render () {
     let notes = this.props.notes.map((note, i) => 
       <Note
+        note={note}
+        index={i}
         openDeleteNoteModal={this.props.openDeleteNoteModal} 
-        isDeleteNoteModalOpen={this.props.isDeleteNoteModalOpen}
-        deleteNote={this.props.deleteNote}
-        onClose={() => this.props.closeDeleteNoteModal()}
+        openEditNoteModal={this.props.openEditNoteModal}
         />
       );
     return (

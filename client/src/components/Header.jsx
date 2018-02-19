@@ -1,6 +1,5 @@
 import React from 'react';
 import style from '../styles.css'
-import AddNoteModal from './AddNoteModal.jsx'
 
 class Header extends React.Component {
   constructor(props) {
@@ -18,11 +17,6 @@ class Header extends React.Component {
           value="+   Add Note"
           onClick={() => this.props.openAddNoteModal()}
         />
-        <AddNoteModal 
-          isAddNoteModalOpen={this.props.isAddNoteModalOpen}
-          addNote={this.props.addNote}
-          closeAddNoteModal={() => this.props.closeAddNoteModal()}
-          />
       </div>
     )
   }

@@ -15,31 +15,32 @@ class DeleteNoteModal extends React.Component {
         <div className="backdrop-modal">
           <div className="modal">
             <div className="modal-color" >
-            note color picker
+            color should be white
             </div>
             <div className="modal-header" >
             note header with color
             </div>
             <div className="modal-title" >
-              note title
+              Delete Note
             </div>
             <div className="modal-body" >
-            hi from add modal
+            Are you should you want to delete this note?
             </div>
             <div className="modal-footer">
               <input 
                 id="btn-cancel"
                 type="button" 
                 value="Cancel"
-                onClick={() => this.props.closeDeleteNoteModal()}
+                onClick={() => this.props.closeNoteModal()}
               />
               <input 
-                id="btn-save"
+                id="btn-delete"
                 type="button" 
-                value="Save"
+                value="Delete"
                 onClick={() => {
-                  this.props.deleteNote();
-                  this.props.closeDeleteNoteModal();
+                  // alert(this.props.index)
+                  this.props.deleteNote(this.props.index);
+                  this.props.closeNoteModal();
                   }
                 }
               />

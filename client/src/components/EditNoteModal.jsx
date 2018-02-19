@@ -1,18 +1,17 @@
 import React from 'react';
 import style from '../styles.css'
 
-class AddNoteModal extends React.Component {
+class EditNoteModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      color: '',
-      title: '',
-      body: '',
+      color: this.props.note.color,
+      title: this.props.note.title,
+      body: this.props.note.body,
     }
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleColorChange = this.handleColorChange.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
-    this.resetState = this.resetState.bind(this);
   }
 
   handleTitleChange(event) {
@@ -31,18 +30,12 @@ class AddNoteModal extends React.Component {
     this.setState({body: event.target.value});
   }
 
-  resetState() {
-    this.setState({
-      body: '',
-      color: '',
-      title: '',
-    });
-  }
-
   render () {
-    if (!this.props.isAddNoteModalOpen) {
+    if (!this.props.isEditNoteModalOpen) {
       return null;
     } else {
+      console.log(this.props)
+      // console.log(this.props)
       return (
         <div className="backdrop-modal">
           <div className="modal">
@@ -90,8 +83,7 @@ class AddNoteModal extends React.Component {
                 type="button" 
                 value="Save"
                 onClick={() => {
-                  this.props.addNote(this.state.color, this.state.title, this.state.body);
-                  this.resetState();
+                  this.props.editNote(this.props.index, this.state.color, this.state.title, this.state.body);
                   this.props.closeNoteModal();
                   }
                 }
@@ -105,4 +97,4 @@ class AddNoteModal extends React.Component {
   }
 }
 
-export default AddNoteModal;
+export default EditNoteModal;

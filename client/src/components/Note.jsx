@@ -2,7 +2,6 @@ import React from 'react';
 import style from '../styles.css';
 import trashIcon from '../public/icons/trash.png';
 import pencilIcon from '../public/icons/pencil.png';
-import DeleteNoteModal from './DeleteNoteModal.jsx'
 
 class Note extends React.Component {
   constructor(props) {
@@ -17,31 +16,29 @@ class Note extends React.Component {
     return (
       <div className="post-it" >
         <div className="note-color" >
-        note color picker
+        {this.props.note.color}
         </div>
         <div className="note-header" >
-        note header with color
           <div className="note-title" >
-            note title
+            {this.props.note.title}
           </div>
           <div className="note-header-buttons">
-            <img src={pencilIcon} className="icons"/> 
+            <img 
+              src={pencilIcon} 
+              className="icons"
+              onClick={() => this.props.openEditNoteModal(this.props.index) }
+              /> 
             <img 
               className="btn-delete"
               src={trashIcon} 
               className="icons"
-              onClick={() => this.props.openDeleteNoteModal()}
+              onClick={() => this.props.openDeleteNoteModal(this.props.index) }
             /> 
-            <DeleteNoteModal 
-              isDeleteNoteModalOpen={this.props.isDeleteNoteModalOpen}
-              deleteNote={this.props.deleteNote}
-              closeDeleteNoteModal={() => this.props.closeDeleteNoteModal()}
-            />
           </div>
         </div>
 
         <div className="note-body" >
-        note body
+        {this.props.note.body}
         </div>
       </div>
     )
