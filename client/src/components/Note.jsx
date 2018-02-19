@@ -15,21 +15,21 @@ class Note extends React.Component {
 
   render () {
     return (
-      <div class="post-it" >
-        <div class="note-color" >
+      <div className="post-it" >
+        <div className="note-color" >
         note color picker
         </div>
-        <div class="note-header" >
+        <div className="note-header" >
         note header with color
-          <div class="note-title" >
+          <div className="note-title" >
             note title
           </div>
-          <div class="note-header-buttons">
-            <img src={pencilIcon} class="icons"/> 
+          <div className="note-header-buttons">
+            <img src={pencilIcon} className="icons"/> 
             <img 
-              class="btn-delete"
+              className="btn-delete"
               src={trashIcon} 
-              class="icons"
+              className="icons"
               onClick={() => this.props.openDeleteNoteModal()}
             /> 
             <DeleteNoteModal 
@@ -40,7 +40,7 @@ class Note extends React.Component {
           </div>
         </div>
 
-        <div class="note-body" >
+        <div className="note-body" >
         note body
         </div>
       </div>

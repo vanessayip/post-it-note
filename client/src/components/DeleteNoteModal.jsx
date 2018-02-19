@@ -12,21 +12,21 @@ class DeleteNoteModal extends React.Component {
       return null;
     } else {
       return (
-        <div class="backdrop-modal">
-          <div class="modal">
-            <div class="modal-color" >
+        <div className="backdrop-modal">
+          <div className="modal">
+            <div className="modal-color" >
             note color picker
             </div>
-            <div class="modal-header" >
+            <div className="modal-header" >
             note header with color
             </div>
-            <div class="modal-title" >
+            <div className="modal-title" >
               note title
             </div>
-            <div class="modal-body" >
+            <div className="modal-body" >
             hi from add modal
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <input 
                 id="btn-cancel"
                 type="button" 

@@ -128,6 +128,22 @@
   background: yellow;
 }
 
+#btn-pink {
+  background-color: pink;
+  border-radius: 4px;
+  width: 5px;
+}
+
+#btn-pink:focus {
+  outline-width: 3px;
+}
+
+#btn-blue {
+  background-color: blue;
+  border-radius: 4px;
+  width: 5px;
+}
+
 .modal-footer {
   width: 100%;
   height: 20%;
@@ -147,3 +163,7 @@
   background: rgba(0, 0, 0, 0.3);
 }
 /* add note */
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

@@ -1,2 +1,9 @@
-node_modules
-DS_Store
+# Dependency directorys
+node_modules/
+
+# Desktop services store
+.DS_Store
+package-lock.json
+
+# Compiled Dirs
+/dist
