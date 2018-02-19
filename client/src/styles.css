@@ -1,0 +1,149 @@
+* {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+#page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+/* -------------------------------*/
+#header {
+  min-width: 500px;
+  width: 100%;
+  min-height: 80px;
+  height: 10%;
+  background-color: rgb(30, 36, 49);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+}
+
+/* add note button */
+#btn-add-note {
+  width: 150px;
+  height: 50px;
+  background-color: rgb(86, 182, 191);
+  border-radius: 7px;
+  border: none;
+  color: white;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 100;
+  /*margin-right: 60px;*/
+}
+
+/* -------------------------------*/
+#content-area {
+  width: 100%;
+  height: 95%;
+  background-color: rgb(249, 249, 249);
+  overflow: auto;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+/* display of post it*/
+.post-it {
+  min-width: 200px;
+  background-color: rgb(251, 251, 251);
+  width: calc(83.5%/4);
+  min-height: 200px;
+  height: 30%;
+  border-radius: 5px;
+  box-shadow: 7.5px 7.5px 6px -6px lightgray,
+  -7.5px 7.5px 6px -6px lightgray;
+  margin: 2%;
+  display: flex;
+  flex-direction: column;
+}
+
+.note-color {
+  height:3%;
+  width: 100%;
+  background-color: yellow;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+.note-header {
+  width: 100%;
+  height: 22%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+
+.note-title {
+  width: 70%;
+  height: 22%;
+  /*font-size: 20px;*/
+  font-weight: 300;
+  color: rgb(78, 103, 118) ;
+  display: inline-block;
+  margin-left: 10px;
+  overflow: hidden;
+}
+.note-header-buttons {
+  width: 30%;
+  height: 22%;
+  /*font-size: 20px;*/
+/*  font-weight: 300;
+  color: rgb(78, 103, 118) ;
+  display: inline-block;
+  margin-left: 10px;
+  overflow: hidden;*/
+}
+
+.icons {
+  width: 15px;
+  height: 17px;
+
+  /*margin-right: 15px;*/
+}
+.note-body {
+  width: 100%;
+  height: 75%;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+/* modal */
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background: yellow;
+}
+
+.modal-footer {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+  /*justify-content: flex-end;*/
+  align-items: center;
+}
+
+.backdrop-modal{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  background: rgba(0, 0, 0, 0.3);
+}
+/* add note */
