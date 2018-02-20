@@ -5,7 +5,7 @@ class AddNoteModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      color: '',
+      color: 'FAA9B0',
       title: '',
       body: '',
     }
@@ -16,26 +16,23 @@ class AddNoteModal extends React.Component {
   }
 
   handleTitleChange(event) {
-    console.log(event.target)
     this.setState({title: event.target.value});
   }
 
   handleColorChange(event) {
     let selectedColor = event.target.id.split('btn-');
-    // console.log(selectedColor[1]);
     this.setState({color: selectedColor[1]});
   }
 
   handleBodyChange(event) {
-    console.log(event.target)
     this.setState({body: event.target.value});
   }
 
   resetState() {
     this.setState({
-      body: '',
-      color: '',
+      color: 'FAA9B0',
       title: '',
+      body: '',
     });
   }
 
@@ -45,57 +42,83 @@ class AddNoteModal extends React.Component {
     } else {
       return (
         <div className="backdrop-modal">
-          <div className="modal">
+          <div 
+            className="modal"
+            style={{ "borderTop": '8px solid #' + this.state.color}}
+          >
             <div className="modal-color" >
-              <input 
-                id="btn-pink"
-                type="button" 
-                value=" "
-                onClick={this.handleColorChange}
-              />
-              <input 
-                id="btn-blue"
-                type="button" 
-                value=" "
-                onClick={this.handleColorChange}
-              />
-            </div>
-            <div className="modal-header" >
-            note header with color
-            </div>
-            <input 
-              type="text"
-              value={this.state.title}
-              className="modal-title"
-              placeholder="Untitled"
-              onChange={this.handleTitleChange} 
-            />
-            <form>
-            <textarea 
-              className="modal-body"
-              value={this.state.body}
-              placeholder="Just start typing here"
-              onChange={this.handleBodyChange} 
-            />
-            </form>
-            <div className="modal-footer">
-              <input 
-                id="btn-cancel"
-                type="button" 
-                value="Cancel"
-                onClick={this.props.closeNoteModal}
-              />
-              <input 
-                id="btn-save"
-                type="button" 
-                value="Save"
-                onClick={() => {
-                  this.props.addNote(this.state.color, this.state.title, this.state.body);
-                  this.resetState();
-                  this.props.closeNoteModal();
-                  }
+              <div 
+                id="btn-FAA9B0"
+                className={
+                  this.state.color === 'FAA9B0' ? "color-selector selected" : "color-selector"
                 }
+                onClick={this.handleColorChange}
               />
+              <div 
+                id="btn-B5ECD1"
+                className={
+                  this.state.color === 'B5ECD1' ? "color-selector selected" : "color-selector"
+                }                onClick={this.handleColorChange}
+              />
+              <div 
+                id="btn-FBDBAE"
+                className={
+                  this.state.color === 'FBDBAE' ? "color-selector selected" : "color-selector"
+                }                onClick={this.handleColorChange}
+              />
+              <div 
+                id="btn-AECCFB"
+                className={
+                  this.state.color === 'AECCFB' ? "color-selector selected" : "color-selector"
+                }                onClick={this.handleColorChange}
+              />
+            </div>
+            <div >
+              <input 
+                className="modal-title"
+                type="text"
+                value={this.state.title}
+                placeholder="Untitled"
+                onChange={this.handleTitleChange} 
+              />
+            </div>
+            <div>
+              <textarea 
+                className="modal-body"
+                value={this.state.body}
+                placeholder="Just start typing here"
+                onChange={this.handleBodyChange} 
+              />
+            </div>
+            <div className="modal-footer">
+              <div>
+                <input 
+                  className="btn-cancel"
+                  type="button" 
+                  value="Cancel"
+                  onClick={this.props.closeNoteModal}
+                />
+              </div> 
+              <div>
+              { this.state.title || this.state.body ?  
+                <input 
+                  className="btn-save"
+                  type="button" 
+                  value="Add"
+                  onClick={() => {
+                    this.props.addNote(this.state.color, this.state.title, this.state.body);
+                    this.resetState();
+                    this.props.closeNoteModal();
+                    }
+                  }
+                /> : 
+                <input 
+                  className="btn-save disabled"
+                  type="button" 
+                  value="Add"
+                /> 
+              }
+              </div> 
             </div>
           </div>
         </div>

@@ -10,20 +10,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '', 
-      view: 'home',
       notes: [{
         title: 'Welcome!',
-        body: 'Try out this post-it app',
-        color: 'rgb(250, 169, 176)',
-      }, {
-        title: 'Welcome!',
-        body: 'Try out this post-it app',
-        color: 'rgb(250, 169, 176)',
+        body: 'Add some stuff!',
+        color: 'FAA9B0',
       }],
-      noteColor: '',
-      noteTitle: '',
-      noteBody: '',
       noteIndexToModify: null,
       isAddNoteModalOpen: false,
       isEditNoteModalOpen: false,
@@ -34,6 +25,7 @@ class App extends React.Component {
 
     this.deleteNote = this.deleteNote.bind(this);
     this.openDeleteNoteModal = this.openDeleteNoteModal.bind(this);
+
     this.editNote = this.editNote.bind(this);
     this.openEditNoteModal = this.openEditNoteModal.bind(this);
     
@@ -76,7 +68,7 @@ class App extends React.Component {
       title: title,
       body: body,
     };
-    // console.log(color, title, body)
+
     this.setState({
       notes: [...this.state.notes, newNote],
     });
@@ -95,11 +87,11 @@ class App extends React.Component {
       title: title,
       body: body,
     };
-    debugger
+    
     let notes = this.state.notes.slice(0, noteIndex);
     notes.push(updatedNote);
     notes = notes.concat(this.state.notes.slice(noteIndex + 1));
-    // console.log(color, title, body)
+    
     this.setState({
       notes: notes,
     });
@@ -108,7 +100,7 @@ class App extends React.Component {
   render () {
 
     return (
-      <div id="page" >
+      <div>
         <Header 
           addNote={this.addNote} 
           isAddNoteModalOpen={this.state.isAddNoteModalOpen} 

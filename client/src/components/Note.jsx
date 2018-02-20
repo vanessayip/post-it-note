@@ -1,37 +1,33 @@
 import React from 'react';
 import style from '../styles.css';
-import trashIcon from '../public/icons/trash.png';
-import pencilIcon from '../public/icons/pencil.png';
+import trashIcon from '../public/icons/trash.svg';
+import pencilIcon from '../public/icons/pencil.svg';
 
 class Note extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      value: '', 
-    }
   }
 
 
   render () {
     return (
-      <div className="post-it" >
-        <div className="note-color" >
-        {this.props.note.color}
-        </div>
+      <div 
+        className="post-it"
+        style={{ "borderTop": '8px solid #' + this.props.note.color }}
+      >
         <div className="note-header" >
           <div className="note-title" >
             {this.props.note.title}
           </div>
           <div className="note-header-buttons">
             <img 
-              src={pencilIcon} 
               className="icons"
+              src={pencilIcon} 
               onClick={() => this.props.openEditNoteModal(this.props.index) }
               /> 
             <img 
-              className="btn-delete"
-              src={trashIcon} 
               className="icons"
+              src={trashIcon} 
               onClick={() => this.props.openDeleteNoteModal(this.props.index) }
             /> 
           </div>

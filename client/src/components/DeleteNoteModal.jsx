@@ -8,37 +8,45 @@ class DeleteNoteModal extends React.Component {
 
 
   render () {
+    let deleteTitle = 'Delete Note';
+    let deleteMessage = 'Are you should you want to delete this note?';
+
     if (!this.props.isDeleteNoteModalOpen) {
       return null;
     } else {
       return (
         <div className="backdrop-modal">
-          <div className="modal">
-            <div className="modal-color" >
-            color should be white
-            </div>
-            <div className="modal-header" >
-            note header with color
-            </div>
+          <div 
+            className="modal"
+            style={{ 
+              "borderTop": '8px solid #FBFBFB',
+              "height": "30%",
+              "width": "40%"
+            }}
+          >
             <div className="modal-title" >
-              Delete Note
+            {deleteTitle}
             </div>
-            <div className="modal-body" >
-            Are you should you want to delete this note?
+            <div 
+              className="modal-body" 
+              style={{ 
+                "height": "70%"
+              }}
+            >
+            {deleteMessage}
             </div>
             <div className="modal-footer">
               <input 
-                id="btn-cancel"
+                className="btn-cancel"
                 type="button" 
                 value="Cancel"
                 onClick={() => this.props.closeNoteModal()}
               />
               <input 
-                id="btn-delete"
+                className="btn-save"
                 type="button" 
                 value="Delete"
                 onClick={() => {
-                  // alert(this.props.index)
                   this.props.deleteNote(this.props.index);
                   this.props.closeNoteModal();
                   }

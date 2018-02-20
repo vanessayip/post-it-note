@@ -11,6 +11,7 @@ class NotesList extends React.Component {
   render () {
     let notes = this.props.notes.map((note, i) => 
       <Note
+        key={i}
         note={note}
         index={i}
         openDeleteNoteModal={this.props.openDeleteNoteModal} 

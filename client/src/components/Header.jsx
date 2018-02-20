@@ -6,11 +6,9 @@ class Header extends React.Component {
     super(props);
   }
 
-
   render () {
     return (
-      <div id="header">
-      Notes App
+      <div id="app-header">
         <input 
           id="btn-add-note"
           type="button" 
